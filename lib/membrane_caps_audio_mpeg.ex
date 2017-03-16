@@ -15,7 +15,7 @@ defmodule Membrane.Caps.Audio.MPEG do
   @type crc_enabled_t :: boolean
 
   # Bitrate
-  @type bitrate_t :: pos_integer
+  @type bitrate_t :: pos_integer | :free
 
   # Amount of channels inside a frame.
   @type channels_t :: pos_integer
