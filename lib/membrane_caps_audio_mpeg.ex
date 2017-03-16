@@ -17,9 +17,6 @@ defmodule Membrane.Caps.Audio.MPEG do
   # Bitrate
   @type bitrate_t :: pos_integer | :free
 
-  # Amount of channels inside a frame.
-  @type channels_t :: pos_integer
-
   # Sample rate of the audio.
   @type sample_rate_t :: pos_integer
 
@@ -50,7 +47,6 @@ defmodule Membrane.Caps.Audio.MPEG do
     layer: layer_t,
     crc_enabled: crc_enabled_t,
     bitrate: bitrate_t,
-    channels: channels_t,
     sample_rate: sample_rate_t,
     padding_enabled: padding_enabled_t,
     private: private_t,
