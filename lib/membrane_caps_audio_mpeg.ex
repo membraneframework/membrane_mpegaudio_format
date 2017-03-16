@@ -30,7 +30,7 @@ defmodule Membrane.Caps.Audio.MPEG do
   @type channel_mode_t :: :stereo | :joint_stereo | :dual_channel | :single_channel
 
   # Mode extension (in Joint Stereo)
-  @type mode_extension_t :: :mode0 | :mode1 | :mode2 | :mode3
+  @type mode_extension_t :: :mode0 | :mode1 | :mode2 | :mode3 | nil
 
   # Copyright bit set?
   @type copyright_t :: boolean
