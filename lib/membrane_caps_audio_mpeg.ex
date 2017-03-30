@@ -5,6 +5,10 @@ defmodule Membrane.Caps.Audio.MPEG do
   See https://www.mp3-tech.org/programmer/frame_header.html
   """
 
+  @compile {:inline, [
+    samples_per_frame: 2,
+  ]}
+
   # MPEG version
   @type version_t :: :v1 | :v2 | :v2_5
 
@@ -71,4 +75,22 @@ defmodule Membrane.Caps.Audio.MPEG do
     copyright: nil,
     original: nil,
     emphasis_mode: nil
+
+
+  @doc """
+  Returns amount of raw audio samples that are in the frame for given
+  version/layer combination.
+
+  Inlined by the compiler.
+  """
+  @spec samples_per_frame(version_t, layer_t) :: pos_integer
+  def samples_per_frame(:v1, :layer1), do: 384
+  def samples_per_frame(:v1, :layer2), do: 1152
+  def samples_per_frame(:v1, :layer3), do: 1152
+  def samples_per_frame(:v2, :layer1), do: 384
+  def samples_per_frame(:v2, :layer2), do: 1152
+  def samples_per_frame(:v2, :layer3), do: 576
+  def samples_per_frame(:v2_5, :layer1), do: 384
+  def samples_per_frame(:v2_5, :layer2), do: 1152
+  def samples_per_frame(:v2_5, :layer3), do: 576
 end
