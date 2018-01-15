@@ -7,6 +7,7 @@ defmodule Membrane.Caps.Audio.MPEG do
 
   @compile {:inline, [
     samples_per_frame: 2,
+    sound_of_silence: 0,
   ]}
 
   # MPEG version
@@ -93,4 +94,32 @@ defmodule Membrane.Caps.Audio.MPEG do
   def samples_per_frame(:v2_5, :layer1), do: 384
   def samples_per_frame(:v2_5, :layer2), do: 1152
   def samples_per_frame(:v2_5, :layer3), do: 576
+
+
+  @doc """
+  Returns one 'silent' frame along with its caps.
+
+  Inlined by the compiler.
+  """
+  @spec sound_of_silence :: {binary, t}
+  def sound_of_silence do
+    payload =
+      <<255, 251, 16, 100, 0, 15, 240, 0, 0, 105, 0, 0, 0, 8, 0, 0, 13, 32, 0,
+      0, 1, 0, 0, 1, 164, 0, 0, 0, 32, 0, 0, 52, 128, 0, 0, 4, 76, 65, 77, 69,
+      51, 46, 49, 48, 48,
+      85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
+      85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
+      85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
+      85, 85, 85, 85, 85>>
+
+    caps = %__MODULE__{
+        bitrate: 32, channel_mode: :joint_stereo,
+        channels: 2, copyright: false, crc_enabled: true, emphasis_mode: :none,
+        layer: :layer3, mode_extension: :mode2, original: true,
+        padding_enabled: false, private: false, sample_rate: 44100, version: :v1,
+      }
+
+    {payload, caps}
+  end
+
 end
