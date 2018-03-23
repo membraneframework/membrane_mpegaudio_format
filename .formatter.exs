@@ -1,8 +1,7 @@
 [
   inputs: [
-    "{lib,spec,config}/**/*.{ex,exs}",
+    "{lib,test,spec,config}/**/*.{ex,exs}",
     "mix.exs"
-  ],
-  import: [:espec]
+  ]
 ]
 
