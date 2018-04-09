@@ -7,8 +7,8 @@ defmodule Membrane.Caps.Audio.MPEG.Mixfile do
       version: "0.0.1",
       elixir: "~> 1.6",
       description: "Membrane Multimedia Framework (mpeg audio format definition)",
-      maintainers: ["Marcin Lewandowski"],
-      licenses: ["MIT"],
+      maintainers: ["Membrane Team"],
+      licenses: ["Apache 2.0"],
       name: "Membrane Caps: Audio.MPEG",
       source_url: "https://github.com/membraneframework/membrane-caps-audio-mpeg",
       deps: deps()
