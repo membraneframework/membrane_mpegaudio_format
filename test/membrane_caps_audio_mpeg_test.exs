@@ -68,7 +68,7 @@ defmodule Membrane.Caps.Audio.MPEGTest do
         original: true,
         padding_enabled: false,
         private: false,
-        sample_rate: 44100,
+        sample_rate: 44_100,
         version: :v1
       }
 
