@@ -2,7 +2,7 @@ defmodule Membrane.Caps.Audio.MPEG do
   @moduledoc """
   This module implements struct for caps representing MPEG audio stream.
 
-  See https://www.mp3-tech.org/programmer/frame_header.html
+  See [MPEG Frame header documentation](https://www.mp3-tech.org/programmer/frame_header.html)
   """
 
   @compile {:inline,
