@@ -10,7 +10,7 @@ defmodule Membrane.Caps.Audio.MPEG.Mixfile do
       package: package(),
       name: "Membrane Caps: Audio.MPEG",
       source_url: link(),
-      homepage_url: "https://membraneframework.org",
+      docs: docs(),
       deps: deps()
     ]
   end
@@ -19,11 +19,21 @@ defmodule Membrane.Caps.Audio.MPEG.Mixfile do
     "https://github.com/membraneframework/membrane-caps-audio-mpeg"
   end
 
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md"]
+    ]
+  end
+
   defp package do
     [
       maintainers: ["Membrane Team"],
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => link()}
+      links: %{
+        "GitHub" => link(),
+        "Membrane Framework Homepage" => "https://membraneframework.org"
+      }
     ]
   end
 
