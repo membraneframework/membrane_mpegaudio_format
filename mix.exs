@@ -1,7 +1,7 @@
 defmodule Membrane.Caps.Audio.MPEG.Mixfile do
   use Mix.Project
 
-  @version "0.1.1"
+  @version "0.2.0"
   @github_url "https://github.com/membraneframework/membrane-caps-audio-mpeg"
 
   def project do
