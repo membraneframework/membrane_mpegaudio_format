@@ -41,6 +41,45 @@ defmodule Membrane.Caps.Audio.MPEGTest do
     end
   end
 
+  def calculate_frame_size(version, layer, bitrate, sample_rate, padding) do
+    alias Membrane.Caps.Audio.MPEG
+
+    MPEG.frame_size(%MPEG{
+      version: version,
+      layer: layer,
+      bitrate: bitrate,
+      sample_rate: sample_rate,
+      padding_enabled: padding
+    })
+  end
+
+  describe "frame_size/1" do
+    # First 2 values from https://www.ietf.org/proceedings/47/slides/avt-finlayson-00mar/sld005.htm
+    test "128 kbps MPEG-1 layer 3 @ 44.1kHz" do
+      assert calculate_frame_size(:v1, :layer3, 128, 44_100, false) == 417
+      assert calculate_frame_size(:v1, :layer3, 128, 44_100, true) == 418
+    end
+
+    test "24 kbps MPEG-2 layer 3 @ 16kHz" do
+      assert calculate_frame_size(:v2, :layer3, 24, 16_000, false) == 108
+    end
+
+    test "320 kbps MPEG-1 layer 3 @ 44.1kHz" do
+      assert calculate_frame_size(:v1, :layer3, 320, 44_100, false) == 1044
+      assert calculate_frame_size(:v1, :layer3, 320, 44_100, true) == 1045
+    end
+
+    test "192 kbps MPEG-1 layer 3 @ 44.1kHz" do
+      assert calculate_frame_size(:v1, :layer3, 192, 44_100, false) == 626
+      assert calculate_frame_size(:v1, :layer3, 192, 44_100, true) == 627
+    end
+
+    test "160 kbps MPEG-1 layer 2 @ 44.1kHz" do
+      assert calculate_frame_size(:v1, :layer2, 160, 44_100, false) == 522
+      assert calculate_frame_size(:v1, :layer2, 160, 44_100, true) == 523
+    end
+  end
+
   describe "sound_of_silence/0" do
     import Membrane.Caps.Audio.MPEG, only: [sound_of_silence: 0]
 

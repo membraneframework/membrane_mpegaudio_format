@@ -93,6 +93,26 @@ defmodule Membrane.Caps.Audio.MPEG do
   def samples_per_frame(:v2_5, :layer2), do: 1152
   def samples_per_frame(:v2_5, :layer3), do: 576
 
+  @spec frame_size(caps :: t) :: pos_integer
+  def frame_size(%__MODULE__{
+        version: version,
+        layer: layer,
+        bitrate: bitrate,
+        sample_rate: sample_rate,
+        padding_enabled: padding_enabled
+      }) do
+    # See row G at: http://www.mp3-tech.org/programmer/frame_header.html
+    padding =
+      case {padding_enabled, layer} do
+        {false, _} -> 0
+        {true, :layer1} -> 4
+        {true, _} -> 1
+      end
+
+    # FrameSize = Bitrate_kbps * 1000 / 8 * SamplesPerFrame / SampleRate_hz + Padding
+    div(bitrate * 125 * samples_per_frame(version, layer), sample_rate) + padding
+  end
+
   @doc """
   Returns one 'silent' frame along with its caps.
 
