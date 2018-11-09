@@ -77,6 +77,12 @@ defmodule Membrane.Caps.Audio.MPEG do
             emphasis_mode: nil
 
   @doc """
+  Returns the size of MPEG audio frame header (4 bytes).
+  """
+  @spec header_size() :: 4
+  def header_size(), do: 4
+
+  @doc """
   Returns amount of raw audio samples that are in the frame for given
   version/layer combination.
 
@@ -92,6 +98,30 @@ defmodule Membrane.Caps.Audio.MPEG do
   def samples_per_frame(:v2_5, :layer1), do: 384
   def samples_per_frame(:v2_5, :layer2), do: 1152
   def samples_per_frame(:v2_5, :layer3), do: 576
+
+  @doc """
+  Returns the size of a frame in bytes. The result does not include
+  the size of a header.
+  """
+  @spec frame_size(caps :: t) :: pos_integer
+  def frame_size(%__MODULE__{
+        version: version,
+        layer: layer,
+        bitrate: bitrate,
+        sample_rate: sample_rate,
+        padding_enabled: padding_enabled
+      }) do
+    # See row G at: http://www.mp3-tech.org/programmer/frame_header.html
+    padding =
+      case {padding_enabled, layer} do
+        {false, _} -> 0
+        {true, :layer1} -> 4
+        {true, _} -> 1
+      end
+
+    # FrameSize = Bitrate_kbps * 1000 / 8 * SamplesPerFrame / SampleRate_hz + Padding
+    div(bitrate * 125 * samples_per_frame(version, layer), sample_rate) + padding
+  end
 
   @doc """
   Returns one 'silent' frame along with its caps.
