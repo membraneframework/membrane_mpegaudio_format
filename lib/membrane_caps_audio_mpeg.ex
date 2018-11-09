@@ -79,7 +79,7 @@ defmodule Membrane.Caps.Audio.MPEG do
   @doc """
   Returns the size of MPEG audio frame header (4 bytes).
   """
-  @spec header_size() :: pos_integer
+  @spec header_size() :: 4
   def header_size(), do: 4
 
   @doc """
