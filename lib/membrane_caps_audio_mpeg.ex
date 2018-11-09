@@ -93,6 +93,10 @@ defmodule Membrane.Caps.Audio.MPEG do
   def samples_per_frame(:v2_5, :layer2), do: 1152
   def samples_per_frame(:v2_5, :layer3), do: 576
 
+  @doc """
+  Returns the size of a frame in bytes. The result does not include
+  the size of a header.
+  """
   @spec frame_size(caps :: t) :: pos_integer
   def frame_size(%__MODULE__{
         version: version,
