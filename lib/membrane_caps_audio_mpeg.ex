@@ -77,6 +77,12 @@ defmodule Membrane.Caps.Audio.MPEG do
             emphasis_mode: nil
 
   @doc """
+  Returns the size of MPEG audio frame header (4 bytes).
+  """
+  @spec header_size() :: pos_integer
+  def header_size(), do: 4
+
+  @doc """
   Returns amount of raw audio samples that are in the frame for given
   version/layer combination.
 
