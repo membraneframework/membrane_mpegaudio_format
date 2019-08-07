@@ -1,6 +1,6 @@
 # Membrane Multimedia Framework: MPEG audio format definition
 
-[![Build Status](https://travis-ci.com/membraneframework/membrane-caps-audio-mpeg.svg?branch=master)](https://travis-ci.com/membraneframework/membrane-caps-audio-mpeg)
+[![CircleCI](https://circleci.com/gh/membraneframework/membrane-caps-audio-mpeg.svg?style=svg)](https://circleci.com/gh/membraneframework/membrane-caps-audio-mpeg)
 
 This package provides MPEG audio format definition (so-called caps) for the
 [Membrane Multimedia Framework](https://membraneframework.org).
