@@ -1,4 +1,4 @@
-defmodule Membrane.MPEG.Audio.Format.Mixfile do
+defmodule Membrane.MPEGAudio.Mixfile do
   use Mix.Project
 
   @version "0.3.0"
@@ -8,8 +8,9 @@ defmodule Membrane.MPEG.Audio.Format.Mixfile do
     [
       app: :membrane_mpegaudio_format,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.12",
       source_url: @github_url,
+      start_permanent: Mix.env() == :prod,
       docs: docs(),
       deps: deps(),
       dialyzer: dialyzer(),
@@ -74,5 +75,4 @@ defmodule Membrane.MPEG.Audio.Format.Mixfile do
       source_ref: "v#{@version}"
     ]
   end
-
 end

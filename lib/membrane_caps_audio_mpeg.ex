@@ -1,4 +1,4 @@
-defmodule Membrane.Caps.Audio.MPEG do
+defmodule Membrane.MPEGAudio do
   @moduledoc """
   This module implements struct for caps representing MPEG audio stream.
 
@@ -47,7 +47,7 @@ defmodule Membrane.Caps.Audio.MPEG do
   # Emphasis mode
   @type emphasis_mode_t :: :none | :emphasis_50_15 | :reserved | :ccit_j_17
 
-  @type t :: %Membrane.Caps.Audio.MPEG{
+  @type t :: %Membrane.MPEGAudio{
           version: version_t,
           layer: layer_t,
           crc_enabled: crc_enabled_t,
