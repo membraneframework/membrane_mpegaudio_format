@@ -41,7 +41,7 @@ defmodule Membrane.MPEGAudio.Test do
     end
   end
 
-  def calculate_frame_size(version, layer, bitrate, sample_rate, padding) do
+  defp calculate_frame_size(version, layer, bitrate, sample_rate, padding) do
     alias Membrane.MPEGAudio
 
     MPEGAudio.frame_size(%MPEGAudio{
