@@ -1,8 +1,8 @@
-defmodule Membrane.Caps.Audio.MPEGTest do
+defmodule Membrane.MPEGAudio.Test do
   use ExUnit.Case, async: true
 
   describe "samples_per_frame/2" do
-    import Membrane.Caps.Audio.MPEG, only: [samples_per_frame: 2]
+    import Membrane.MPEGAudio, only: [samples_per_frame: 2]
 
     test "should return 384 for MPEG 1 layer I" do
       assert samples_per_frame(:v1, :layer1) == 384
@@ -41,10 +41,10 @@ defmodule Membrane.Caps.Audio.MPEGTest do
     end
   end
 
-  def calculate_frame_size(version, layer, bitrate, sample_rate, padding) do
-    alias Membrane.Caps.Audio.MPEG
+  defp calculate_frame_size(version, layer, bitrate, sample_rate, padding) do
+    alias Membrane.MPEGAudio
 
-    MPEG.frame_size(%MPEG{
+    MPEGAudio.frame_size(%MPEGAudio{
       version: version,
       layer: layer,
       bitrate: bitrate,
@@ -81,7 +81,7 @@ defmodule Membrane.Caps.Audio.MPEGTest do
   end
 
   describe "sound_of_silence/0" do
-    import Membrane.Caps.Audio.MPEG, only: [sound_of_silence: 0]
+    import Membrane.MPEGAudio, only: [sound_of_silence: 0]
 
     test "should return proper payload" do
       payload =
@@ -95,7 +95,7 @@ defmodule Membrane.Caps.Audio.MPEGTest do
     end
 
     test "should return proper caps" do
-      caps = %Membrane.Caps.Audio.MPEG{
+      caps = %Membrane.MPEGAudio{
         bitrate: 32,
         channel_mode: :joint_stereo,
         channels: 2,
