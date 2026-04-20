@@ -114,9 +114,9 @@ defmodule Membrane.MPEGAudio do
     # See row G at: http://www.mp3-tech.org/programmer/frame_header.html
     padding =
       case {padding_enabled, layer} do
-        {false, _} -> 0
+        {false, _layer} -> 0
         {true, :layer1} -> 4
-        {true, _} -> 1
+        {true, _layer} -> 1
       end
 
     # FrameSize = Bitrate_kbps * 1000 / 8 * SamplesPerFrame / SampleRate_hz + Padding
