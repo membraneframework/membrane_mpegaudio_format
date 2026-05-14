@@ -1,7 +1,7 @@
 defmodule Membrane.MPEGAudio.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @github_url "https://github.com/membraneframework/membrane_mpegaudio_format"
 
   def project do
@@ -39,7 +39,7 @@ defmodule Membrane.MPEGAudio.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.19", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false}
     ]
@@ -52,6 +52,7 @@ defmodule Membrane.MPEGAudio.Mixfile do
 
     if System.get_env("CI") == "true" do
       # Store PLTs in cacheable directory for CI
+      File.mkdir_p!(Path.join([__DIR__, "priv", "plts"]))
       [plt_local_path: "priv/plts", plt_core_path: "priv/plts"] ++ opts
     else
       opts

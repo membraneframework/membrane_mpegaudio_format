@@ -91,7 +91,7 @@ defmodule Membrane.MPEGAudio.Test do
           85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
           85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85>>
 
-      assert {^payload, _} = sound_of_silence()
+      assert {^payload, _caps} = sound_of_silence()
     end
 
     test "should return proper caps" do
@@ -111,7 +111,7 @@ defmodule Membrane.MPEGAudio.Test do
         version: :v1
       }
 
-      assert {_, ^caps} = sound_of_silence()
+      assert {_payload, ^caps} = sound_of_silence()
     end
   end
 end

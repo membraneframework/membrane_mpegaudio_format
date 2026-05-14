@@ -114,9 +114,9 @@ defmodule Membrane.MPEGAudio do
     # See row G at: http://www.mp3-tech.org/programmer/frame_header.html
     padding =
       case {padding_enabled, layer} do
-        {false, _} -> 0
+        {false, _layer} -> 0
         {true, :layer1} -> 4
-        {true, _} -> 1
+        {true, _layer} -> 1
       end
 
     # FrameSize = Bitrate_kbps * 1000 / 8 * SamplesPerFrame / SampleRate_hz + Padding
@@ -132,8 +132,7 @@ defmodule Membrane.MPEGAudio do
   def sound_of_silence do
     payload =
       <<255, 251, 16, 100, 0, 15, 240, 0, 0, 105, 0, 0, 0, 8, 0, 0, 13, 32, 0, 0, 1, 0, 0, 1, 164,
-        0, 0, 0, 32, 0, 0, 52, 128, 0, 0, 4, 76, 65, 77, 69, 51, 46, 49, 48,
-        48>> <>
+        0, 0, 0, 32, 0, 0, 52, 128, 0, 0, 4, 76, 65, 77, 69, 51, 46, 49, 48, 48>> <>
         <<85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
           85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,
           85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85>>
