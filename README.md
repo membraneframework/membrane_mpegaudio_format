@@ -18,7 +18,7 @@ reason, just add the following line to your `deps` in the `mix.exs` and run
 `mix deps.get`.
 
 ```elixir
-{:membrane_mpegaudio_format, "~> 0.3.1"}
+{:membrane_mpegaudio_format, "~> 0.3.2"}
 ```
 
 ## Copyright and License
